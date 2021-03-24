@@ -23,9 +23,7 @@ namespace Wohnverwaltung.Controllers
         public async Task<IActionResult> Index(bool? ShowAll)
         {
             ViewBag.BoolShowAll = ShowAll.HasValue && ShowAll.Value ? false : true;
-            if (ShowAll.HasValue && ShowAll.Value)
-                return View(await _context.Wohnungen.ToListAsync());
-            return View(await _context.Wohnungen.Where(x => !x.IstInaktiv).ToListAsync());
+            return View(await _context.Wohnungen.ToListAsync());
         }
 
         // GET: Wohnung/Create

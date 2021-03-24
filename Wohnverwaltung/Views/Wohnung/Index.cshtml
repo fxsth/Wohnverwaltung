@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Index";
 }
+<hr />
+<p>@Model.Count() Wohnungen verwaltet, darunter @Model.Count(x => !x.IstInaktiv) aktive Wohnungen;</p>
 <table class="table">
     <thead>
         <tr>
@@ -37,6 +39,10 @@
     <tbody>
         @foreach (var item in Model)
         {
+            if (ViewBag.BoolShowAll && item.IstInaktiv)
+            {
+                continue;
+            }
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Bezeichnung)
