@@ -1,0 +1,49 @@
+﻿@model Wohnverwaltung.Models.Wohnung
+
+@{
+    ViewData["Title"] = "Create";
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Bezeichnung" class="control-label"></label>
+                <input asp-for="Bezeichnung" class="form-control" />
+                <span asp-validation-for="Bezeichnung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Straße" class="control-label"></label>
+                <input asp-for="Straße" class="form-control" />
+                <span asp-validation-for="Straße" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PLZ" class="control-label"></label>
+                <input asp-for="PLZ" id="search-query" onkeyup="check_plz(this.value)" class="form-control" />
+                <span asp-validation-for="PLZ" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ort" class="control-label"></label>
+                <input asp-for="Ort" id="search-result" class="form-control" />
+                <span asp-validation-for="Ort" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IstInaktiv" /> @Html.DisplayNameFor(model => model.IstInaktiv)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Hinzufügen" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Zurück zur Übersicht</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
